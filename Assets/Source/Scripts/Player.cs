@@ -15,11 +15,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float _verticalMinAngle = -89f;
     [SerializeField] private float _verticalMaxAngle = 89f;
     [SerializeField] private float _gravityFactor = 2f;
-
+ 
     private Vector3 _verticalVelocity;
     private Transform _transform;
     private CharacterController _characterController;
     private float _cameraAngle;
+    private Vector3 _gravityValue = Physics.gravity;
 
     private void Awake()
     {
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    _verticalVelocity = Vector3.down;
+                    _verticalVelocity = _gravityValue;
                 }
 
                 _characterController.Move((playerSpeed + _verticalVelocity) * Time.deltaTime);
@@ -61,7 +62,7 @@ public class Player : MonoBehaviour
             {
                 Vector3 horizontalVelocity = _characterController.velocity;
                 horizontalVelocity.y = 0;
-                _verticalVelocity += Physics.gravity * _gravityFactor * Time.deltaTime;
+                _verticalVelocity += _gravityValue * _gravityFactor * Time.deltaTime;
                 _characterController.Move((horizontalVelocity + _verticalVelocity) * Time.deltaTime);
             }
         }
