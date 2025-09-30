@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    _verticalVelocity = Vector3.up * _jumpSpeed;
+                    _verticalVelocity = Vector3.up * _jumpSpeed * _speed;
                 }
                 else
                 {
